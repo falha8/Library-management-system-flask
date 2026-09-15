@@ -209,11 +209,22 @@ library_system/
 ### Login Page
 ![Login Page](screenshots/login.png)
 
+### Register
+![Register](screenshots/register.png)
+
 ### Catalog Page
 ![Catalog Page](screenshots/catalog.png)
 
 ### Admin Dashboard
 ![Admin Dashboard](screenshots/admin_dashboard.png)
+
+### Member Dashboard
+![Member Dashboard](screenshots/member_dashboard.png)
+
+### Issue Book
+![Issue Book](screenshots/issue_book.png)
+
+
 
 ## Possible Future Additions
 

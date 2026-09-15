@@ -204,6 +204,17 @@ library_system/
 - Data is stored in memory, so it resets whenever the server restarts — this is intentional for this project stage (no database required).
 - A few starter books are pre-loaded so the catalog isn't empty on first run.
 
+## Screenshots
+
+### Login Page
+![Login Page](screenshots/login.png)
+
+### Catalog Page
+![Catalog Page](screenshots/catalog.png)
+
+### Admin Dashboard
+![Admin Dashboard](screenshots/admin_dashboard.png)
+
 ## Possible Future Additions
 
 - Persist data to a real database (MySQL/SQLite)

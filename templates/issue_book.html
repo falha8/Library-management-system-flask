@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Issue a Book</h1>
+
+    <form method="POST">
+        <label>Member</label>
+        <select name="username" required>
+            <option value=""> select member </option>
+            {% for username, m in members.items() %}
+                <option value="{{ username }}">{{ username }} ({{ m.name }})</option>
+            {% endfor %}
+        </select>
+
+        <label>Book</label>
+        <select name="book_id" required>
+            <option value=""> select book </option>
+            {% for b in books %}
+                {% if b.available_copies > 0 %}
+                    <option value="{{ b.id }}">{{ b.title }} ({{ b.available_copies }} available)</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+
+        <button type="submit">Issue Book</button>
+    </form>
+
+    <p><small>Due date will automatically be set to 14 days from today.</small></p>
+{% endblock %}

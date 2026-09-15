@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Admin Dashboard</h1>
+    <div class="summary-cards">
+        <div class="card">
+            <h2>{{ total_books }}</h2>
+            <p>Total Books</p>
+        </div>
+        <div class="card">
+            <h2>{{ total_members }}</h2>
+            <p>Total Members</p>
+        </div>
+        <div class="card">
+            <h2>{{ issued_count }}</h2>
+            <p>Books Currently Issued</p>
+        </div>
+        <div class="card">
+            <h2 class="{% if overdue_count > 0 %}overdue{% endif %}">{{ overdue_count }}</h2>
+            <p>Overdue Books</p>
+        </div>
+    </div>
+
+    <p style="margin-top: 25px;">
+        <a href="{{ url_for('catalog') }}">Manage Catalog</a> |
+        <a href="{{ url_for('issue_book') }}">Issue a Book</a> |
+        <a href="{{ url_for('admin_members') }}">View Members & Issued Books</a>
+    </p>
+{% endblock %}

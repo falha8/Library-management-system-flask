@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Members</h1>
+
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        {% for username, m in members.items() %}
+        <tr>
+            <td>{{ username }}</td>
+            <td>{{ m.name }}</td>
+            <td>{{ m.email }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% if members|length == 0 %}
+        <p>No members registered yet.</p>
+    {% endif %}
+
+    <h1>Issued Books</h1>
+    <table>
+        <tr>
+            <th>Book</th>
+            <th>Member</th>
+            <th>Issue Date</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Fine</th>
+            <th>Action</th>
+        </tr>
+        {% for r in records %}
+            {% for b in books %}
+                {% if b.id == r.book_id %}
+                <tr>
+                    <td>{{ b.title }}</td>
+                    <td>{{ r.username }}</td>
+                    <td>{{ r.issue_date }}</td>
+                    <td>{{ r.due_date }}</td>
+                    <td>
+                        {% if r.return_date %}
+                            Returned on {{ r.return_date }}
+                        {% else %}
+                            Not returned yet
+                        {% endif %}
+                    </td>
+                    <td>Rs. {{ r.fine }}</td>
+                    <td>
+                        {% if not r.return_date %}
+                            <a href="{{ url_for('return_book', record_id=r.record_id) }}">Mark Returned</a>
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </table>
+    {% if records|length == 0 %}
+        <p>No books issued yet.</p>
+    {% endif %}
+{% endblock %}

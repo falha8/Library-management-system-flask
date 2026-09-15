@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+   
+    <h1>Welcome, {{ session.get('username') }}!</h1>
+
+    <h2>My Borrowed Books</h2>
+    <p><small>Note: fines are only calculated once a book is returned late.</small></p>
+    {% if records|length == 0 %}
+        <p>You have not borrowed any books right now.</p>
+    {% else %}
+    <table>
+        <tr>
+            <th>Book</th>
+            <th>Issue Date</th>
+            <th>Due Date</th>
+            <th>Status</th>
+        </tr>
+        {% for r in records %}
+            {% for b in books %}
+                {% if b.id == r.book_id %}
+                <tr>
+                    <td>{{ b.title }}</td>
+                    <td>{{ r.issue_date }}</td>
+                    <td>{{ r.due_date }}</td>
+                    <td>
+                        {% if today > r.due_date %}
+                            <span class="overdue">Overdue</span>
+                        {% else %}
+                            On time
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}
